@@ -20,9 +20,9 @@ function node_expose_json_help($path, $arg) {
         appropriate node are present, otherwise it will respond with
         "access denied".') .'</p>'.'<p>' .
       t('Get the JSON value by Enabling this light weight module
-        <base_url>/nodejson/%/% </br><b>Example:</b>
-        <b>www.example.com/nodejson/page/1</b>  or
-        <b>www.example.com/nodejson/article/2</b> to JSON representation of a
+        <base_url>/page_json/%/% </br><b>Example:</b>
+        <b>www.example.com/page_json/page/1</b>  or
+        <b>www.example.com/page_json/article/2</b> to JSON representation of a
         given node with the content type "page" only if the previously submitted
         <b>Site API Key</b> and a node id (nid) of an appropriate node are present,
         otherwise it will respond with "access denied".') .'</p>';
@@ -35,7 +35,7 @@ function node_expose_json_help($path, $arg) {
  */
 function node_expose_json_menu() {
   $items = array();
-  $items['nodejson/%/%'] = array(
+  $items['page_json/%/%'] = array(
     'title' => 'Node Expose JSON',
     'description' => 'JSON expose of a given node for content type "page".',
     'page callback' => 'node_expose_json_page',
