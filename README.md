@@ -1,0 +1,2 @@
+# node_expose_json
+This module provides a URL that responds with a JSON representation of a  given node with the content type "page" only if the previously submitted  Site API Key and a node id (nid) of an appropriate node are present,  otherwise it will respond with "access denied"
