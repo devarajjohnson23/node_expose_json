@@ -1,0 +1,89 @@
+<?php
+
+/**
+ * @file
+ * Module file for the Node Expose module. Drupal needs this file.
+ */
+
+/**
+ * Implements hook_help()
+ */
+function node_expose_json_help($path, $arg) {
+  switch ($path) {
+    case 'admin/help#node_expose_json':
+      $output = '<p>' . t('This module provides a URL that responds with a
+        JSON representation of a given node with the content type "page" only
+        if the previously submitted <b>Site API Key</b> and a node id (nid) of an
+        appropriate node are present, otherwise it will respond with
+        "access denied".') .'</p>'.'<p>' .
+      t('Get the JSON value by Enabling this light weight module
+        <base_url>/nodejson/%/% </br><b>Example:</b>
+        <b>www.example.com/nodejson/page/1</b>  or
+        <b>www.example.com/nodejson/article/2</b> to JSON representation of a
+        given node with the content type "page" only if the previously submitted
+        <b>Site API Key</b> and a node id (nid) of an appropriate node are present,
+        otherwise it will respond with "access denied".') .'</p>';
+      return $output;
+  }
+}
+
+/**
+ * Implements hook_menu()
+ */
+function node_expose_json_menu() {
+  $items = array();
+  $items['nodejson/%/%'] = array(
+    'title' => 'Node Expose JSON',
+    'description' => 'JSON expose of a given node for content type "page".',
+    'page callback' => 'node_expose_json_page',
+    'page arguments' => array(1,2),
+    'access callback' => 'access_node_expose_json',
+    'file' => 'node_expose_json.admin.inc',
+    'type' => MENU_CALLBACK,
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function node_expose_json_form_alter(&$form, &$form_state, $form_id) {
+  switch ($form_id)  {
+    case 'system_site_information_settings':
+      //Added new Site API Key field to validate the Access for Node Json output
+      $form['site_information']['siteapikey'] = array(
+        '#type' => 'textfield',
+        '#title' => t('Site API Key'),
+        '#default_value' => variable_get('siteapikey', 'No API Key yet'),
+        '#description' => t('Site API Key to display page type node as JSON'),
+      );
+      $form['actions']['submit']['#value'] = t('Update Configuration');
+      $form['#submit'][] = 'site_api_key_save';
+
+      return system_settings_form($form);
+    break;
+  }
+}
+
+/**
+ * This function Display message when update configuration saved
+ */
+function site_api_key_save($form, &$form_state){
+  drupal_set_message(t('The configuration for site API key have been Updated ').
+    '<b>'.check_plain($form_state['values']['siteapikey']).'</b>');
+}
+
+/**
+ * [access_node_expose_json why this function is not in .inc file
+ * reff http://drupal.stackexchange.com/questions/28783/put-the-access-callback-function-in-a-separated-file
+ * @return [Boolean] access TRUE or FALSE
+ */
+function access_node_expose_json(){
+  $authorization_token = variable_get('siteapikey','');
+  if(isset($authorization_token) && !empty($authorization_token)){
+    return TRUE;
+  }
+  return FALSE;
+}
+

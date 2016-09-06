@@ -1,0 +1,4 @@
+name = Expose Drupal node as JSON
+description = JSON representation of a given node with the content type "page"
+core = 7.x
+configure = admin/config/system/site-information

@@ -1,0 +1,23 @@
+<?php
+
+/**
+ * @file
+ * Uninstall functions for the node_expose_json module.
+ */
+
+/**
+ * Implements hook_uninstall().
+ */
+function node_expose_json_uninstall() {
+  variable_del('siteapikey');
+}
+
+/**
+ * Implements hook_enable().
+ */
+function node_expose_json_enable() {
+  $t = get_t();
+  $config_link = url() . 'admin/config/system/site-information';
+  drupal_set_message($t("Configure the Site API Key in the following link
+    <a href='@link'> Configuration » System</a>", array('@link' => $config_link)));
+}
