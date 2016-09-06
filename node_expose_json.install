@@ -2,13 +2,14 @@
 
 /**
  * @file
- * Uninstall functions for the node_expose_json module.
+ * Uninstall and Enable hook for the node_expose_json module.
  */
 
 /**
  * Implements hook_uninstall().
  */
 function node_expose_json_uninstall() {
+  //Delete the variable while uninstall
   variable_del('siteapikey');
 }
 

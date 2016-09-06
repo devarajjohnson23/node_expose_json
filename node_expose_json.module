@@ -7,6 +7,9 @@
 
 /**
  * Implements hook_help()
+ * @param  string $path path of the help page
+ * @param  string $arg  Module name of the help function
+ * @return string $output Return the help text in the $path
  */
 function node_expose_json_help($path, $arg) {
   switch ($path) {
@@ -80,10 +83,12 @@ function site_api_key_save($form, &$form_state){
  * @return [Boolean] access TRUE or FALSE
  */
 function access_node_expose_json(){
-  $authorization_token = variable_get('siteapikey','');
-  if(isset($authorization_token) && !empty($authorization_token)){
-    return TRUE;
+  //Get the Site API Key
+  $site_api_key = variable_get('siteapikey','');
+  //If $site_api_key exist and not empty grant access to the Menu URL
+  if(isset($site_api_key) && !empty($site_api_key)){
+    return TRUE;//Grant Access
   }
-  return FALSE;
+  return FALSE;//Deney Access
 }
 

@@ -6,13 +6,16 @@
  */
 
 /**
- * [node_expose_json_page description]
- * @return [String] [Return the JSON format of the requested Node]
+ * Query the Node for the respective Node type and return the JSON value of node
+ * @param  string $type Bundle name = Content type name
+ * @param  int $nid  Node ID of the particular Content type
+ * @return string $node Return the JSON format of the requested Node
  */
 function node_expose_json_page($type='page',$nid){
-  //Check plain since input is from user to sanitize the value
+  //Check plain $type since input is from user to sanitize the value
   $type = check_plain($type);
-  //Check plain since input is from user to sanitize the value
+  //Check plain $nid since input is from user to sanitize the value and check if
+  //it is numeric or not
   $nid = check_plain($nid) && is_numeric($nid) ? $nid : FALSE;
   if($nid){
     //Entity Query Entity type = node, Bundle = Node Type, Nid = Node ID
@@ -26,7 +29,7 @@ function node_expose_json_page($type='page',$nid){
     }
     //Show the JSON data if the node exist otherwise show 403 access denied
     $node = !empty($node) ? $node : drupal_access_denied();
-
+    //Return the data as JSON using drupal default function
     drupal_json_output($node);
   }else{
     echo "Please enter the numeric value";
