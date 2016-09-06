@@ -1,32 +1,37 @@
 CONTENTS OF THIS FILE
 ---------------------
 
- * Introduction
- * Requirements
- * Installation
- * Configuration
- * Troubleshooting
- * Maintainers
+  * Introduction
+  * Requirements
+  * Installation
+  * Configuration
+  * Troubleshooting
+  * Maintainers
 
 INTRODUCTION
 -----------
-This module is used to Show a count of nodes of a particular content-type
-and also number of Users of particular role type.
-This module will be used for statistical and development purposes only.
+  * This module provides a URL that responds with a JSON representation of a
+ given node with the content type "page" only if the previously submitted
+ Site API Key and a node id (nid) of an appropriate node are present,
+ otherwise it will respond with "access denied"
+  * Get the JSON value by Enabling this light weight module
+  <base_url>/nodejson/%/%
 
-Uses:
+ Example:
+  <base_url>/nodejson/page/1 = "page" is content type name and '1' is nid
+  or
+  <base_url>/nodejson/article/2 = "article" is content type name and "2" is nid
+  to JSON representation of a given node with the content type "page" only if
+  the submitted Site API Key and a node id (nid) of an appropriate node are present,
+  otherwise it will respond with "access denied"
 
-1. Will count the number of published and unpublished nodes in particular
-content type which will be useful in content audit.
-
-2. This module is used to count the number of users in particular Role
-
-Note: This module is for statistical and development purpose only.
-Enable it when ever its needed in the Production Environment.
+  Note:
+  For the Give Senario Please use the below URL:
+  <base_url>/nodejson/page/1 to get the JSON of type only "page"
 
 REQUIREMENTS
 ------------
-This project does not require any support modules
+  This project does not require any support modules
 
 INSTALLATION
 ------------
@@ -36,16 +41,12 @@ INSTALLATION
 
 CONFIGURATION
 -------------
- * Customize the menu settings in Administration ? Configuration and modules ?
-   Administration ? Administration menu.
-
- * To prevent administrative menu items from appearing twice, you may hide the
-   "Management" menu block.
+ * Configure the Site API Key in the following link Configuration » System
+   admin/config/system/site-information and fill the field Site API Key
 
 TROUBLESHOOTING
 ---------------
- * If the menu does not display, check the following:
-  - Check you have administrator permission to view this module.
+ * If the menu URL does not display, check the following:
   - Clear the drupal cache if the menu is not displayed
 
 MAINTAINERS
