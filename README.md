@@ -42,8 +42,8 @@ INSTALLATION
 
 CONFIGURATION
 -------------
- * Configure the Site API Key in the following link Configuration » System
-   admin/config/system/site-information and fill the field Site API Key
+ * Configure the Site API Key in the following link Configuration » System </br>
+ [base_url]/admin/config/system/site-information and fill the field Site API Key
 
 TROUBLESHOOTING
 ---------------
