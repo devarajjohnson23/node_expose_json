@@ -16,19 +16,19 @@ INTRODUCTION
  and a node id (nid) of an appropriate node are present,
  otherwise it will respond with "access denied"
   * Get the JSON value by Enabling this light weight module
-  [base_url]/nodejson/%/%
+  [base_url]/page_json/%/%
   ARG1 = Content type machine name
   ARG2 = Node ID
 
  Example:
-  [base_url]/nodejson/page/1 = "page" is content type name and '1' is nid
+  [base_url]/page_json/page/1 = "page" is content type name and '1' is nid
   or
-  [base_url]/nodejson/article/2 = "article" is content type name and "2" is nid
+  [base_url]/page_json/article/2 = "article" is content type name and "2" is nid
   To represent a given node with the content type "page"
 
   Note:
   For the Give Senario Please use the below URL:
-  [base_url]/nodejson/page/[nid] to get the JSON of type only "page"
+  [base_url]/page_json/page/[nid] to get the JSON of type only "page"
 
 REQUIREMENTS
 ------------
